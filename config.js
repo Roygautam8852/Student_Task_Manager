@@ -1,2 +1,3 @@
-export const APP_NAME = "Student Task Manager UI";
+export const APP_NAME = "Student Task Manager";
+
 
