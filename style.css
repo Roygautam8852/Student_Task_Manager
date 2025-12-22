@@ -1,0 +1,22 @@
+body {
+    font-family: Arial;
+    background: #f4f4f4;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+input {
+    padding: 8px;
+}
+
+button {
+    padding: 8px;
+}
+
+li {
+    margin: 5px 0;
+}
+
