@@ -11,6 +11,53 @@ h1 {
 input {
     padding: 8px;
 }
+body {
+    font-family: Arial, sans-serif;
+    background: #eef2f7;
+    padding: 40px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    max-width: 400px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+input {
+    width: 70%;
+    padding: 8px;
+}
+
+button {
+    padding: 8px 10px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: #f4f4f4;
+    margin: 8px 0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 4px;
+}
+
+li.done {
+    text-decoration: line-through;
+    color: gray;
+}
 
 button {
     padding: 8px;
