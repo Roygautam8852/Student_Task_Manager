@@ -1,90 +1,94 @@
-const landingPage = document.getElementById("landingPage");
-const authPage = document.getElementById("authPage");
-const dashboard = document.getElementById("dashboard");
+const taskGrid = document.querySelector(".task-grid");
+const addBtn = document.querySelector(".add-btn");
+const modal = document.getElementById("taskModal");
 
-const usernameInput = document.getElementById("username");
-const passwordInput = document.getElementById("password");
-const userNameDisplay = document.getElementById("userNameDisplay");
+const titleInput = document.getElementById("taskTitle");
+const descInput = document.getElementById("taskDesc");
+const statusInput = document.getElementById("taskStatus");
+const tagInput = document.getElementById("taskTag");
+const saveBtn = document.getElementById("saveTask");
 
-const taskInput = document.getElementById("taskInput");
-const taskGrid = document.getElementById("taskGrid");
+let currentUser = localStorage.getItem("currentUser") || "Guest";
 
-let currentUser = null;
-
-/* ===== Navigation ===== */
-function showAuth() {
-    landingPage.classList.add("hidden");
-    authPage.classList.remove("hidden");
-}
-
-function logout() {
-    localStorage.removeItem("currentUser");
-    location.reload();
-}
-
-/* ===== Auth ===== */
-document.getElementById("authBtn").onclick = () => {
-    const username = usernameInput.value.trim();
-    const password = passwordInput.value.trim();
-    if (!username || !password) return;
-
-    let users = JSON.parse(localStorage.getItem("users")) || {};
-    if (!users[username]) {
-        users[username] = { password, tasks: [] };
-        localStorage.setItem("users", JSON.stringify(users));
-    }
-
-    currentUser = username;
-    localStorage.setItem("currentUser", username);
-    loadDashboard();
+let users = JSON.parse(localStorage.getItem("users")) || {
+  Guest: { tasks: [] }
 };
 
-/* ===== Dashboard ===== */
-function loadDashboard() {
-    authPage.classList.add("hidden");
-    landingPage.classList.add("hidden");
-    dashboard.classList.remove("hidden");
-    userNameDisplay.textContent = currentUser;
-    renderTasks();
+if (!users[currentUser]) users[currentUser] = { tasks: [] };
+
+let tasks = users[currentUser].tasks;
+
+/* ===== MODAL ===== */
+addBtn.onclick = () => modal.classList.remove("hidden");
+function closeModal() { modal.classList.add("hidden"); }
+
+/* ===== SAVE TASK ===== */
+saveBtn.onclick = () => {
+  if (!titleInput.value) return;
+
+  tasks.push({
+    title: titleInput.value,
+    desc: descInput.value,
+    status: statusInput.value,
+    tag: tagInput.value || "General"
+  });
+
+  titleInput.value = descInput.value = tagInput.value = "";
+  statusInput.value = "backlog";
+
+  saveData();
+  closeModal();
+  renderTasks();
+};
+
+/* ===== SAVE STORAGE ===== */
+function saveData() {
+  users[currentUser].tasks = tasks;
+  localStorage.setItem("users", JSON.stringify(users));
 }
 
-function addTask() {
-    const text = taskInput.value.trim();
-    if (!text) return;
-
-    let users = JSON.parse(localStorage.getItem("users"));
-    users[currentUser].tasks.push({ text, done: false });
-    localStorage.setItem("users", JSON.stringify(users));
-    taskInput.value = "";
-    renderTasks();
-}
-
+/* ===== RENDER ===== */
 function renderTasks() {
-    let users = JSON.parse(localStorage.getItem("users"));
-    let tasks = users[currentUser].tasks;
+  taskGrid.innerHTML = "";
 
-    taskGrid.innerHTML = "";
-    tasks.forEach((task, index) => {
-        const card = document.createElement("div");
-        card.className = "task-card" + (task.done ? " done" : "");
-        card.innerHTML = `
-            <p>${task.text}</p>
-            <button onclick="toggleTask(${index})">Done</button>
-        `;
-        taskGrid.appendChild(card);
-    });
+  tasks.forEach((t, i) => {
+    const card = document.createElement("div");
+    card.className = "task-card";
+
+    card.innerHTML = `
+      <span class="badge ${t.status}">${t.status}</span>
+      <h3>${t.title}</h3>
+      <p>${t.desc}</p>
+
+      <div class="task-footer">
+        <span class="tag">${t.tag}</span>
+        <div>
+          <button onclick="changeStatus(${i})">↻</button>
+          <button onclick="deleteTask(${i})">✖</button>
+        </div>
+      </div>
+    `;
+
+    taskGrid.appendChild(card);
+  });
 }
 
-function toggleTask(index) {
-    let users = JSON.parse(localStorage.getItem("users"));
-    users[currentUser].tasks[index].done = true;
-    localStorage.setItem("users", JSON.stringify(users));
-    renderTasks();
-}
+/* ===== ACTIONS ===== */
+window.deleteTask = (i) => {
+  tasks.splice(i, 1);
+  saveData();
+  renderTasks();
+};
 
-/* ===== Auto Login ===== */
-const savedUser = localStorage.getItem("currentUser");
-if (savedUser) {
-    currentUser = savedUser;
-    loadDashboard();
-}
+window.changeStatus = (i) => {
+  const order = ["backlog", "progress", "completed"];
+  let idx = order.indexOf(tasks[i].status);
+  tasks[i].status = order[(idx + 1) % order.length];
+  saveData();
+  renderTasks();
+};
+const avatar = document.getElementById("userAvatar");
+avatar.textContent = currentUser[0].toUpperCase();
+
+
+renderTasks();
