@@ -8,21 +8,45 @@
 </head>
 <body>
 
+<!-- ===== AUTH SECTION ===== -->
+<div class="auth-container" id="authContainer">
+    <div class="auth-box">
+        <h2 id="authTitle">Sign In</h2>
+
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+
+        <button id="authBtn">Sign In</button>
+
+        <p id="toggleAuth">
+            Don’t have an account? <span>Sign Up</span>
+        </p>
+    </div>
+</div>
+
+<!-- ===== APP SECTION ===== -->
+<div class="app-container hidden" id="appContainer">
+
+    <header>
+        <div class="user-info">
+            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="user">
+            <span id="userNameDisplay"></span>
+        </div>
+        <button id="logoutBtn">Logout</button>
+    </header>
+
     <div class="container">
         <h1>📚 Student Task Manager</h1>
 
         <div class="input-section">
-            <input 
-                type="text" 
-                id="taskInput" 
-                placeholder="Enter your task..."
-            >
-            <button id="addBtn">Add Task</button>
+            <input type="text" id="taskInput" placeholder="Enter your task...">
+            <button id="addBtn">Add</button>
         </div>
 
         <ul id="taskList"></ul>
     </div>
+</div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
