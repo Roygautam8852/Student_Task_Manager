@@ -1,112 +1,90 @@
-const authContainer = document.getElementById("authContainer");
-const appContainer = document.getElementById("appContainer");
-const authBtn = document.getElementById("authBtn");
-const toggleAuth = document.getElementById("toggleAuth");
-const authTitle = document.getElementById("authTitle");
+const landingPage = document.getElementById("landingPage");
+const authPage = document.getElementById("authPage");
+const dashboard = document.getElementById("dashboard");
 
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
-
 const userNameDisplay = document.getElementById("userNameDisplay");
-const logoutBtn = document.getElementById("logoutBtn");
 
 const taskInput = document.getElementById("taskInput");
-const addBtn = document.getElementById("addBtn");
-const taskList = document.getElementById("taskList");
+const taskGrid = document.getElementById("taskGrid");
 
-let isSignup = false;
 let currentUser = null;
 
-/* ===== AUTH ===== */
-toggleAuth.onclick = () => {
-    isSignup = !isSignup;
-    authTitle.textContent = isSignup ? "Sign Up" : "Sign In";
-    authBtn.textContent = isSignup ? "Sign Up" : "Sign In";
-    toggleAuth.innerHTML = isSignup
-        ? `Already have an account? <span>Sign In</span>`
-        : `Don’t have an account? <span>Sign Up</span>`;
-};
+/* ===== Navigation ===== */
+function showAuth() {
+    landingPage.classList.add("hidden");
+    authPage.classList.remove("hidden");
+}
 
-authBtn.onclick = () => {
+function logout() {
+    localStorage.removeItem("currentUser");
+    location.reload();
+}
+
+/* ===== Auth ===== */
+document.getElementById("authBtn").onclick = () => {
     const username = usernameInput.value.trim();
     const password = passwordInput.value.trim();
     if (!username || !password) return;
 
     let users = JSON.parse(localStorage.getItem("users")) || {};
-
-    if (isSignup) {
+    if (!users[username]) {
         users[username] = { password, tasks: [] };
         localStorage.setItem("users", JSON.stringify(users));
     }
 
-    if (users[username] && users[username].password === password) {
-        currentUser = username;
-        localStorage.setItem("currentUser", username);
-        loadApp();
-    }
+    currentUser = username;
+    localStorage.setItem("currentUser", username);
+    loadDashboard();
 };
 
-/* ===== APP ===== */
-function loadApp() {
-    authContainer.classList.add("hidden");
-    appContainer.classList.remove("hidden");
+/* ===== Dashboard ===== */
+function loadDashboard() {
+    authPage.classList.add("hidden");
+    landingPage.classList.add("hidden");
+    dashboard.classList.remove("hidden");
     userNameDisplay.textContent = currentUser;
     renderTasks();
 }
 
-function saveUsers(users) {
-    localStorage.setItem("users", JSON.stringify(users));
-}
-
-function renderTasks() {
-    const users = JSON.parse(localStorage.getItem("users"));
-    const tasks = users[currentUser].tasks;
-    taskList.innerHTML = "";
-
-    tasks.forEach((task, index) => {
-        const li = document.createElement("li");
-        li.textContent = task.text;
-        if (task.completed) li.classList.add("done");
-
-        li.onclick = () => {
-            task.completed = !task.completed;
-            saveUsers(users);
-            renderTasks();
-        };
-
-        const del = document.createElement("button");
-        del.textContent = "✖";
-        del.onclick = (e) => {
-            e.stopPropagation();
-            tasks.splice(index, 1);
-            saveUsers(users);
-            renderTasks();
-        };
-
-        li.appendChild(del);
-        taskList.appendChild(li);
-    });
-}
-
-addBtn.onclick = () => {
+function addTask() {
     const text = taskInput.value.trim();
     if (!text) return;
 
-    const users = JSON.parse(localStorage.getItem("users"));
-    users[currentUser].tasks.push({ text, completed: false });
-    saveUsers(users);
+    let users = JSON.parse(localStorage.getItem("users"));
+    users[currentUser].tasks.push({ text, done: false });
+    localStorage.setItem("users", JSON.stringify(users));
     taskInput.value = "";
     renderTasks();
-};
+}
 
-logoutBtn.onclick = () => {
-    localStorage.removeItem("currentUser");
-    location.reload();
-};
+function renderTasks() {
+    let users = JSON.parse(localStorage.getItem("users"));
+    let tasks = users[currentUser].tasks;
 
-/* Auto login */
+    taskGrid.innerHTML = "";
+    tasks.forEach((task, index) => {
+        const card = document.createElement("div");
+        card.className = "task-card" + (task.done ? " done" : "");
+        card.innerHTML = `
+            <p>${task.text}</p>
+            <button onclick="toggleTask(${index})">Done</button>
+        `;
+        taskGrid.appendChild(card);
+    });
+}
+
+function toggleTask(index) {
+    let users = JSON.parse(localStorage.getItem("users"));
+    users[currentUser].tasks[index].done = true;
+    localStorage.setItem("users", JSON.stringify(users));
+    renderTasks();
+}
+
+/* ===== Auto Login ===== */
 const savedUser = localStorage.getItem("currentUser");
 if (savedUser) {
     currentUser = savedUser;
-    loadApp();
+    loadDashboard();
 }
