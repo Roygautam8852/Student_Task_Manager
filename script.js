@@ -1,15 +1,18 @@
 const input = document.getElementById("taskInput");
-const list = document.getElementById("taskList");
-const button = document.querySelector("button");
+const addBtn = document.getElementById("addBtn");
+const taskList = document.getElementById("taskList");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
+// Save tasks to localStorage
 function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+// Render tasks on UI
 function renderTasks() {
-    list.innerHTML = "";
+    taskList.innerHTML = "";
+
     tasks.forEach((task, index) => {
         const li = document.createElement("li");
         li.textContent = task.text;
@@ -18,55 +21,42 @@ function renderTasks() {
             li.classList.add("done");
         }
 
+        // Toggle completed
         li.onclick = () => {
             tasks[index].completed = !tasks[index].completed;
             saveTasks();
             renderTasks();
         };
 
-        const del = document.createElement("button");
-        del.textContent = "✖";
-        del.onclick = (e) => {
+        // Delete button
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "✖";
+        delBtn.onclick = (e) => {
             e.stopPropagation();
             tasks.splice(index, 1);
             saveTasks();
             renderTasks();
         };
 
-        li.appendChild(del);
-        list.appendChild(li);
+        li.appendChild(delBtn);
+        taskList.appendChild(li);
     });
 }
 
-button.onclick = () => {
-    if (input.value.trim() === "") return;
-    tasks.push({ text: input.value, completed: false });
+// Add new task
+addBtn.onclick = () => {
+    const text = input.value.trim();
+    if (text === "") return;
+
+    tasks.push({
+        text: text,
+        completed: false
+    });
+
     input.value = "";
     saveTasks();
     renderTasks();
 };
 
+// Initial render
 renderTasks();
-const input = document.getElementById("taskInput");
-const list = document.getElementById("taskList");
-const button = document.querySelector("button");
-
-button.addEventListener("click", () => {
-    if (input.value === "") return;
-
-    const li = document.createElement("li");
-    li.textContent = input.value;
-
-    li.addEventListener("click", () => {
-        li.style.textDecoration = "line-through";
-    });
-
-    const del = document.createElement("button");
-    del.textContent = "X";
-    del.onclick = () => li.remove();
-
-    li.appendChild(del);
-    list.appendChild(li);
-    input.value = "";
-});
-

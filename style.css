@@ -1,43 +1,51 @@
-body {
-    font-family: Arial;
-    background: #f4f4f4;
-    padding: 20px;
+* {
+    box-sizing: border-box;
 }
 
-h1 {
-    color: #333;
-}
-
-input {
-    padding: 8px;
-}
 body {
     font-family: Arial, sans-serif;
     background: #eef2f7;
     padding: 40px;
 }
 
-h1 {
-    text-align: center;
-}
-
 .container {
-    max-width: 400px;
+    max-width: 420px;
     margin: auto;
-    background: #fff;
+    background: #ffffff;
     padding: 20px;
     border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 input {
     width: 70%;
-    padding: 8px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 button {
-    padding: 8px 10px;
-    margin-left: 5px;
+    padding: 10px 12px;
+    border: none;
+    background: #4CAF50;
+    color: white;
     cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background: #45a049;
 }
 
 ul {
@@ -47,10 +55,11 @@ ul {
 
 li {
     background: #f4f4f4;
-    margin: 8px 0;
+    margin-bottom: 10px;
     padding: 10px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-radius: 4px;
 }
 
@@ -59,11 +68,11 @@ li.done {
     color: gray;
 }
 
-button {
-    padding: 8px;
+li button {
+    background: #e74c3c;
+    padding: 5px 8px;
 }
 
-li {
-    margin: 5px 0;
+li button:hover {
+    background: #c0392b;
 }
-
