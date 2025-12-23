@@ -417,3 +417,128 @@ body {
 .cancel {
   background: #444;
 }
+/* ================= RESPONSIVE FIXES ================= */
+
+/* ---------- Tablets ---------- */
+@media (max-width: 1024px) {
+
+  .info {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search input {
+    width: 200px;
+  }
+}
+
+/* ---------- Mobile Devices ---------- */
+@media (max-width: 768px) {
+
+  /* App layout */
+  .app {
+    flex-direction: column;
+    height: auto;
+  }
+
+  /* Sidebar becomes top bar */
+  .sidebar {
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .avatar {
+    margin-bottom: 0;
+    margin-right: 16px;
+  }
+
+  .side-nav {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  /* Topbar */
+  .topbar {
+    flex-wrap: wrap;
+    height: auto;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .menu {
+    width: 100%;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .search input {
+    width: 100%;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* Content padding */
+  .content {
+    padding: 20px;
+  }
+
+  /* Info section */
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  /* Task cards */
+  .task-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Small Mobile ---------- */
+@media (max-width: 480px) {
+
+  .topbar {
+    padding: 14px;
+  }
+
+  .add-btn {
+    width: 100%;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Modal */
+  .modal-box {
+    width: 90%;
+    padding: 20px;
+  }
+}
+/* Active sidebar dot */
+.active-dot {
+  background: var(--purple) !important;
+  box-shadow: 0 0 0 4px rgba(166,108,255,0.25);
+}
+/* ===== ACTIVE SIDEBAR DOT ===== */
+.side-nav .dot {
+  cursor: pointer;
+}
+
+.side-nav .dot.active-dot {
+  background: var(--purple);
+  box-shadow: 0 0 0 4px rgba(166,108,255,0.25);
+}
