@@ -9,7 +9,7 @@
 
   <div class="app">
 
-    <!-- ================= SIDEBAR ================= -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="avatar">T</div>
       <nav class="side-nav">
@@ -19,133 +19,86 @@
       </nav>
     </aside>
 
-    <!-- ================= MAIN AREA ================= -->
+    <!-- MAIN -->
     <main class="main">
 
-      <!-- ================= TOP NAVBAR ================= -->
+      <!-- TOPBAR -->
       <header class="topbar">
+
         <div class="menu">
-        <span class="menu-item active" data-tab="projects">My Projects</span>
-          <span class="menu-item" data-tab="schedule">Schedule</span>
-          <span class="menu-item" data-tab="team">Team</span>
+          <span class="menu-item active">My Projects</span>
+          <span class="menu-item">Schedule</span>
+          <span class="menu-item">Team</span>
         </div>
+
         <div class="search">
-          <input type="text" placeholder="Search project, name..." />
+          <input type="text" placeholder="Search Task" />
+          <div class="search-dropdown" id="searchDropdown"></div>
         </div>
 
         <div class="actions">
-          <button class="add-btn">Add Task +</button>
+          <button class="add-btn" id="addTaskBtn">Add Task +</button>
+          <button class="add-btn" id="loginBtn">Login</button>
+          <button class="add-btn" id="signupBtn">Sign Up</button>
+
+          <!-- AVATAR -->
           <div class="user-pic"></div>
+
+          <!-- LOGOUT DROPDOWN -->
+          <div class="avatar-menu" id="avatarMenu">
+            <button id="logoutBtn">Logout</button>
+          </div>
         </div>
+
       </header>
 
-      <!-- ================= CONTENT ================= -->
+      <!-- CONTENT -->
       <section class="content">
 
-        <!-- ===== INFO SECTION ===== -->
+        <!-- INFORMATION -->
         <section class="info">
 
+          <!-- LEFT SIDE -->
           <div class="info-left">
             <h2>Information</h2>
 
             <div class="stats">
               <div class="stat-card backlog">
                 <p>Backlog</p>
-                <h3>9 <span>Task</span></h3>
+                <h3>0 <span>Task</span></h3>
               </div>
 
               <div class="stat-card progress">
                 <p>In Progress</p>
-                <h3>8 <span>Task</span></h3>
+                <h3>0 <span>Task</span></h3>
               </div>
 
               <div class="stat-card completed">
                 <p>Completed</p>
-                <h3>11 <span>Task</span></h3>
+                <h3>0 <span>Task</span></h3>
               </div>
             </div>
           </div>
 
-          <div class="info-right">
-            <h2>Category Task</h2>
-
-            <div class="categories">
-              <div class="category-card">
-                <span class="emoji">🔥</span>
-                <div>
-                  <p>Personal</p>
-                  <span>11 Tasks</span>
-                </div>
-                <span class="arrow">→</span>
-              </div>
-
-              <div class="category-card">
-                <span class="emoji">💼</span>
-                <div>
-                  <p>Business</p>
-                  <span>9 Tasks</span>
-                </div>
-                <span class="arrow">→</span>
-              </div>
-            </div>
-          </div>
 
         </section>
 
-        <!-- ===== TASKS SECTION ===== -->
+        <!-- TASKS -->
         <section class="tasks">
-
           <div class="tasks-header">
             <h2>All My Tasks</h2>
             <p>Managing your tasks is easy with Task Management</p>
           </div>
 
-          <div class="task-grid">
-
-            <!-- TASK CARD -->
-            <div class="task-card">
-              <span class="badge backlog">Backlog</span>
-              <h3>Photo Profile Instagram</h3>
-              <p>I want to make a cool profile photo for instagram</p>
-
-              <div class="task-footer">
-                <span class="tag">Instagram</span>
-                <div class="assignee"></div>
-              </div>
-            </div>
-
-            <!-- TASK CARD -->
-            <div class="task-card">
-              <span class="badge progress">In Progress</span>
-              <h3>Create Material for Sharing Section</h3>
-              <p>Create material for sharing about basic webflow</p>
-
-              <div class="task-footer">
-                <span class="tag">Team</span>
-                <div class="assignee"></div>
-              </div>
-            </div>
-
-            <!-- TASK CARD -->
-            <div class="task-card">
-              <span class="badge completed">Completed</span>
-              <h3>Dribbble Shot</h3>
-              <p>I've made a dribbble design with task management theme</p>
-
-              <div class="task-footer">
-                <span class="tag">Design</span>
-                <div class="assignee"></div>
-              </div>
-            </div>
-
-          </div>
+          <!-- JS FILLED -->
+          <div class="task-grid"></div>
         </section>
 
       </section>
 
     </main>
   </div>
-<script src="script.js"></script>
 
+  <script src="script.js"></script>
 </body>
 </html>
