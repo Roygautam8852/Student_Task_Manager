@@ -1,28 +1,28 @@
-📌 Student Task Manager (Git-Based Project)
+Student Task Manager (Git-Based Project)
 
 A Student Task Manager Web Application built using HTML, CSS, and JavaScript, developed to demonstrate Git version control concepts such as branching, merging, conflict resolution, and structured commit history.
 
 This project is designed as a portfolio + academic Git project with multiple branches and merge conflicts resolved properly.
 
-🚀 Project Features
+Project Features
 
-📋 Add, view, update, and delete tasks
+Add, view, update, and delete tasks
 
-🏷️ Task status management: Backlog, In Progress, Completed
+Task status management: Backlog, In Progress, Completed
 
-💾 Persistent storage using LocalStorage
+Persistent storage using LocalStorage
 
-👤 User-based task handling (Guest / future login support)
+User-based task handling (Guest / future login support)
 
-🎨 Modern dark dashboard UI
+Modern dark dashboard UI
 
-🪟 Modal-based task creation
+Modal-based task creation
 
-🧭 Clean folder structure
+Clean folder structure
 
-🧠 Git workflow with real merge conflicts
+Git workflow with real merge conflicts
 
-🛠️ Tech Stack
+Tech Stack
 
 HTML5 – Structure
 
@@ -32,7 +32,7 @@ JavaScript (Vanilla JS) – Logic & interactivity
 
 Git & GitHub – Version control
 
-📁 Project Structure
+Project Structure
 student-task-manager/
 │
 ├── dashboard-ui/
@@ -44,7 +44,7 @@ student-task-manager/
 ├── README.md
 └── .git/
 
-🌿 Git Branch Strategy
+Git Branch Strategy
 
 This project follows a multi-branch Git workflow:
 
@@ -53,7 +53,7 @@ main	Stable production-ready code
 dev	Integration branch
 feature-ui	UI development
 feature-logic	JavaScript logic & storage
-🔀 Merge Conflict Handling
+Merge Conflict Handling
 
 A real merge conflict occurred in config.js
 
@@ -61,9 +61,9 @@ Conflict was manually resolved
 
 Final clean commit was created after resolution
 
-✔ Demonstrates practical Git conflict resolution skills
+Demonstrates practical Git conflict resolution skills
 
-🧾 Commit Highlights
+Commit Highlights
 
 Initial project setup
 
@@ -78,14 +78,14 @@ Final merge into main
 ✔ Total commits: 10+
 ✔ Branches used: 4
 
-🔗 Remote Repository
+Remote Repository
 
 GitHub Repository:
-👉 https://github.com/Roygautam8852/Student_Task_Manager
+https://github.com/Roygautam8852/Student_Task_Manager
 
 All branches (main, dev, feature-ui, feature-logic) are pushed to remote.
 
-▶️ How to Run the Project Locally
+How to Run the Project Locally
 
 Clone the repository:
 
@@ -100,7 +100,7 @@ cd Student_Task_Manager
 Open dashboard-ui/index.html in browser
 (or use Live Server)
 
-🎯 Learning Outcomes
+Learning Outcomes
 
 Hands-on experience with Git branching and merging
 
