@@ -21,6 +21,7 @@ Modal-based task creation
 Clean folder structure
 
 Git workflow with real merge conflicts
+<img src="image/
 
 Tech Stack
 
@@ -111,3 +112,43 @@ Clean commit history management
 Frontend project structuring
 
 Real-world GitHub workflow
+
+
+
+
+## Git Command Screenshots
+
+
+<img src="image/Screenshot%202025-12-22%20220851.png" width="800"/>
+
+
+<img src="image/Screenshot%202025-12-22%20220904.png" width="800"/>
+
+<img src="image/Screenshot%202025-12-22%20220918.png" width="800"/>
+
+<img src="image/Screenshot%202025-12-22%20220935.png" width="800"/>
+
+
+<img src="image/Screenshot%202025-12-22%20220951.png" width="800"/>
+
+
+<img src="image/Screenshot%202025-12-22%20221013.png" width="800"/>
+
+<img src="image/Screenshot%202025-12-22%20221030.png" width="800"/>
+
+
+<img src="image/Screenshot%202025-12-22%20221057.png" width="800"/>
+
+
+<img src="image/Screenshot%202025-12-22%20221109.png" width="800"/>
+
+<img src="image/Screenshot%202025-12-22%20221122.png" width="800"/>
+
+
+<img src="image/Screenshot%202025-12-22%20221147.png" width="800"/>
+
+
+<img src="image/Screenshot%202025-12-22%20221159.png" width="800"/>
+
+
+<img src="image/Screenshot%202025-12-22%20221214.png" width="800"/>
